@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calcular Pago de Cuotas </title>
+    <script src="Style.js" async></script>
+    
+</head>
+<body>
+    <h1>Calculadora de Cuotas</h1>
+
+<form id="formulario">
+    <label for="monto">Monto Principal:</label>
+    <input type="number" id="monto" name="monto" step="0.01"><br><br>
+    
+    <label for="tasa">Tasa de Interés:</label>
+    <input type="number" id="tasa" name="tasa" step="0.01"><br><br>
+    
+    <label for="cuotas">Número de Cuotas:</label>
+    <input type="number" id="cuotas" name="cuotas" step="1"><br><br>
+    
+    <button type="button" onclick="calcularPago()">Calcular</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+    function calcularCuota(montoPrincipal, tasaInteres, numeroCuotas) {
+        if (numeroCuotas <= 0) {
+            document.getElementById("resultado").innerText = "El número de cuotas debe ser mayor que cero";
+        } else {
+            const tasaPeriodica = tasaInteres / 12; // Suponiendo pagos mensuales
+            const cuota = (montoPrincipal * tasaPeriodica * Math.pow((1 + tasaPeriodica), numeroCuotas)) / (Math.pow((1 + tasaPeriodica), numeroCuotas) - 1);
+            document.getElementById("resultado").innerText = "El pago mensual será: " + cuota.toFixed(2);
+        }
+    }
+
+    function calcularPago() {
+        const monto = parseFloat(document.getElementById("monto").value);
+        const tasa = parseFloat(document.getElementById("tasa").value);
+        const cuotas = parseInt(document.getElementById("cuotas").value);
+        calcularCuota(monto, tasa, cuotas);
+    }
+</script>
+</body>
+</html>
