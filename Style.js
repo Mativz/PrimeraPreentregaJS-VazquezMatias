@@ -7,7 +7,7 @@ function calcularPagosEnCuotas(montoPrestamo, tasaInteresAnual, numeroCuotas) {
     // Calcular el pago mensual utilizando la fórmula de amortización
     const pagoMensual = montoPrestamo * (tasaInteresMensual * Math.pow(1 + tasaInteresMensual, numeroCuotas)) / (Math.pow(1 + tasaInteresMensual, numeroCuotas) - 1);
 
-    // Imprimir el pago mensual
+    // Mostrar el pago mensual
     console.log(`El pago mensual es: $${pagoMensual.toFixed(2)}`);
 
     // Ciclo para mostrar el desglose de pagos mensuales
@@ -21,7 +21,7 @@ function calcularPagosEnCuotas(montoPrestamo, tasaInteresAnual, numeroCuotas) {
         // Actualizar el saldo del préstamo
         montoPrestamo -= capitalMensual;
 
-        // Imprimir el desglose de cada cuota
+        // Mostrar el desglose de cada cuota
         console.log(`\nCuota ${cuota}:`);
         console.log(`  Pago mensual: $${pagoMensual.toFixed(2)}`);
         console.log(`  Interés mensual: $${interesMensual.toFixed(2)}`);
@@ -31,6 +31,13 @@ function calcularPagosEnCuotas(montoPrestamo, tasaInteresAnual, numeroCuotas) {
         // Verificar si es la última cuota
         if (cuota === numeroCuotas) {
             console.log("\n¡Última cuota pagada!");
+
+            // Ejemplo de condicional adicional
+            if (montoPrestamo > 0) {
+                console.log("Se ha pagado el préstamo, pero queda un saldo adicional.");
+            } else {
+                console.log("Préstamo completamente pagado.");
+            }
         }
     }
 }
